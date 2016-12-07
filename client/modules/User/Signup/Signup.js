@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import ReactDOM from 'react-dom';
 import { FormGroup, FormControl, Button, Col } from 'react-bootstrap';
 import { signUpRequest } from '../UserActions';
+import { Link } from 'react-router';
 
 class Signup extends React.Component {
 	constructor(props) {
@@ -27,30 +28,23 @@ class Signup extends React.Component {
 	render() {
 		return (
 			<div>
+				<h1>New to website? Signup Here!! </h1>
 				<form>
 					<FormGroup>
-						<Col sm={10}>
-							<FormControl type="text" placeholder="Name" ref="name"/>
-						</Col>
+						<FormControl type="text" placeholder="Name" ref="name"/>
 					</FormGroup>
 					<FormGroup>
-						<Col sm={10}>
-							<FormControl type="text" placeholder="MobileNumber" ref="number"/>
-						</Col>
+						<FormControl type="text" placeholder="MobileNumber" ref="number"/>
 					</FormGroup>
 					<FormGroup>
-						<Col sm={10}>
-							<FormControl type="text" placeholder="Email" ref="email"/>
-						</Col>
+						<FormControl type="text" placeholder="Email" ref="email"/>
 					</FormGroup>
 					<FormGroup>
-						<Col sm={10}>
-							<FormControl type="password" placeholder="Password" ref="password"/>
-						</Col>
+						<FormControl type="password" placeholder="Password" ref="password"/>
 					</FormGroup>
-						<Col sm={10}>
-							<Button bsStyle="primary"  onClick={this.submitForm}>Submit</Button>
-						</Col>
+					<FormGroup>
+						<FormControl type="submit" className="btn btn-primary" onClick={this.submitForm} value="Sign Up"/>
+					</FormGroup>	
 				</form>
 			</div>
 		)

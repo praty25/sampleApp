@@ -2,6 +2,8 @@ import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { signInRequest } from '../UserActions';
+import { FormGroup, FormControl, Button, Col } from 'react-bootstrap';
+import { Link } from 'react-router';
 
 
 class Login extends React.Component {
@@ -24,12 +26,20 @@ class Login extends React.Component {
 	render() {
 		return (
 			<div>
+				<Link to={'/SignUp'}>Signup</Link>	
 				<form>
-					<input type="text" placeholder="Enter email" ref="email"/>
-					<input type="password" placeholder="Enter password" ref="password"/>
-					<input type="submit" onClick= {this.submitHandle}/>
+					<h1>Welcome Back! Please Login</h1>
+					<FormGroup>
+						<FormControl type="text"  ref="email" placeholder="email"/>
+					</FormGroup>
+					<FormGroup>
+						<FormControl type="password" ref="password" placeholder="Password"/>
+					</FormGroup>
+					<FormGroup>
+						<FormControl type="submit" className="btn btn-primary" onClick={this.submitHandle} value="Log In"/>
+					</FormGroup>
 				</form>
-				{this.props.message}
+				{this.props.token}
 			</div>
 		)
 	}
@@ -37,7 +47,8 @@ class Login extends React.Component {
 
 function mapStateToProps(state) {
 	return {
-		message : state.signup.data.message
+		message : state.signup.data.message,
+		token : state.signup.data.token,
 	}
 }
 
