@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { signInRequest } from '../UserActions';
-import { FormGroup, FormControl, Button, Col } from 'react-bootstrap';
+import { FormGroup, FormControl } from 'react-bootstrap';
 import { Link } from 'react-router';
 
 
@@ -39,7 +39,6 @@ class Login extends React.Component {
 						<FormControl type="submit" className="btn btn-primary" onClick={this.submitHandle} value="Log In"/>
 					</FormGroup>
 				</form>
-				{this.props.token}
 			</div>
 		)
 	}

@@ -4,6 +4,7 @@ import { Route, IndexRoute } from 'react-router';
 import App  from './modules/App/App';
 import Signup from './modules/User/Signup/Signup';
 import Login from './modules/User/Login/Login';
+import Home from './modules/Home/Home';
 
 // require.ensure polyfill for node
 if (typeof require.ensure !== 'function') {
@@ -43,6 +44,11 @@ export default (
     />
     <Route path="/Signup" component={Signup}/>
     <Route path="/Login" component={Login}/>
-    
+    if(localStorage.getItem("token") != null) {
+      <Route path="/Home" component={Home}/>
+    } else {
+      <h1>404:Page Not Found</h1>
+    }
+
   </Route>
 );

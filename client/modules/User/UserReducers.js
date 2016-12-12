@@ -7,8 +7,8 @@ const SignupReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_USER :
       return {
-        data: [action.userData, ...state.data],
-      };
+        data: action.data,
+      }; 
      
     case SIGNIN_USER :
     return {

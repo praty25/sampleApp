@@ -10,7 +10,7 @@ function PostList(props) {
         props.posts.map(post => (
           <PostListItem
             post={post}
-            key={post.cuid}
+            key={post.cuid} 
             onDelete={() => props.handleDeletePost(post.cuid)}
           />
         ))
