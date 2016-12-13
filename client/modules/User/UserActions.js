@@ -1,7 +1,7 @@
 import callApi from '../../util/apiCaller';
 import toastr from 'toastr';
 import { browserHistory } from 'react-router';
-import Token from '../Tokens';
+
 
 // Export Constants
 export const ADD_USER = 'ADD_USER '; 
@@ -9,12 +9,6 @@ export const SIGNIN_USER = 'SIGNIN_USER';
 
 // Export Actions 
 export function addUser(data) {
-  if (data.message == 'User registered successfully'){
-    browserHistory.push('/Login')
-  } else {
-    console.log("Error:",data.message)
-  };
-
   return {
     type: ADD_USER,
     data,
@@ -22,13 +16,6 @@ export function addUser(data) {
 }
 
 export function signInUser(data) {
-  if(data.message == 'enjoy your token!') {
-    Token.setToken(data.token);
-    browserHistory.push('/Home');
-  } else {
-    console.log("Error:",data.message)
-  };
-
   return {
     type: SIGNIN_USER,
     data

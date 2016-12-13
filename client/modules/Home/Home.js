@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import { searchDataRequest } from './HomeActions.js';
-import { isUserLoggedIn } from '../TokenValidation/TokenValidationActions';
 import { connect } from 'react-redux';
 import Searchlist from './Searchlist';
 import { Link } from 'react-router';

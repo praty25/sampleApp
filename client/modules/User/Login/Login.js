@@ -3,7 +3,10 @@ import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { signInRequest } from '../UserActions';
 import { FormGroup, FormControl } from 'react-bootstrap';
+import { ReactToastr, ToastContainer, ToastMessage} from 'react-toastr';
 import { Link } from 'react-router';
+import { browserHistory } from 'react-router';
+import Token from '../../Tokens';
 
 
 class Login extends React.Component {
@@ -12,6 +15,17 @@ class Login extends React.Component {
 
 		this.submitHandle = this.submitHandle.bind(this)
 	}
+
+	componentWillReceiveProps(nextProps) {
+  	if(nextProps.message == 'Authentication failed. User not found.') {
+  		this.refs.container.error(`${nextProps.message}`);
+  	} else if(nextProps.message == 'Authentication failed. Wrong password.') {
+  		this.refs.container.error(`${nextProps.message}`);
+  	} else if(nextProps.message =='enjoy your token!') {
+  		Token.setToken(nextProps.token);
+  		browserHistory.push('/Home')
+  	}
+  }
 
 	submitHandle(e){
 		e.preventDefault();
@@ -35,6 +49,9 @@ class Login extends React.Component {
 					<FormGroup>
 						<FormControl type="password" ref="password" placeholder="Password"/>
 					</FormGroup>
+					 <ToastContainer ref="container"
+                        toastMessageClass={ToastMessage.jQuery}
+                        className="toast-top-right" />
 					<FormGroup>
 						<FormControl type="submit" className="btn btn-primary" onClick={this.submitHandle} value="Log In"/>
 					</FormGroup>

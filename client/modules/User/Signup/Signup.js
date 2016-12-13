@@ -3,14 +3,24 @@ import { connect } from 'react-redux';
 import ReactDOM from 'react-dom';
 import { FormGroup, FormControl } from 'react-bootstrap'; 
 import { signUpRequest } from '../UserActions';
+import { ReactToastr, ToastContainer, ToastMessage} from 'react-toastr';
+import { browserHistory } from 'react-router';
 
-class Signup extends React.Component {
+class Signup extends Component {
 	constructor(props) {
 		super(props);
 
 		this.submitForm=this.submitForm.bind(this);
 	}
 
+  componentWillReceiveProps(nextProps) {
+  	if(nextProps.message == 'Email Id already exists') {
+  		this.refs.container.error(`${nextProps.message}`);
+  	} else if(nextProps.message == 'User registered successfully'){
+  		browserHistory.push('/Login')
+  	}
+  }
+  
 	submitForm(e) {
 		e.preventDefault();
 		let name = ReactDOM.findDOMNode(this.refs.name).value;
@@ -19,8 +29,8 @@ class Signup extends React.Component {
 		let password = ReactDOM.findDOMNode(this.refs.password).value;	
 		let city =	ReactDOM.findDOMNode(this.refs.city).value;	
 		let locality = ReactDOM.findDOMNode(this.refs.locality).value;
-		console.log(name,number,email,password);
-		if(name && number && email && password){
+		// console.log(name,number,email,password);
+		if(name && number && email && password && city && locality){
 			this.props.dispatch(signUpRequest({name, number, email, password, city, locality}))
 		}
 	}
@@ -48,6 +58,9 @@ class Signup extends React.Component {
 					<FormGroup>
 						<FormControl type="text" placeholder="locality" ref="locality" />
 					</FormGroup>
+					 <ToastContainer ref="container"
+                        toastMessageClass={ToastMessage.jQuery}
+                        className="toast-top-right" />
 					<FormGroup>
 						<FormControl type="submit" className="btn btn-primary" onClick={this.submitForm} value="Sign Up"/>
 					</FormGroup>	
