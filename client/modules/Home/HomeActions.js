@@ -10,6 +10,8 @@ export function searchedData(data) {
 	}
 }
 
+
+
 export function searchDataRequest(data) {
 	return(dispatch) => {
 		return callApi('searchData', 'post', {
@@ -19,6 +21,16 @@ export function searchDataRequest(data) {
 			},
 		}).then(res => dispatch(searchedData(res.data)))
 	};
+}
+
+export function isUserLoggedIn(data) {
+	return(dispatch) => {
+		return callApi('chechToken', 'post', {
+			data :{
+				token: data.token
+			}
+		}).then(res => dispatch(checkedToken(res.data)))
+	}
 }
 
 export default searchDataRequest

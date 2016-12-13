@@ -1,4 +1,4 @@
-import Express from 'express';
+  import Express from 'express';
 import compression from 'compression';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
@@ -122,6 +122,8 @@ app.use((req, res, next) => {
     if (redirectLocation) {
       return res.redirect(302, redirectLocation.pathname + redirectLocation.search);
     }
+
+    var token = req.body.token
 
     if (!renderProps) {
       return next();

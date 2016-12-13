@@ -1,12 +1,23 @@
 import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import { searchDataRequest } from './HomeActions.js';
+import { isUserLoggedIn } from '../TokenValidation/TokenValidationActions';
 import { connect } from 'react-redux';
 import Searchlist from './Searchlist';
 import { Link } from 'react-router';
-
+import Token from '../Tokens';
 
 class Home extends React.Component {
+	
+
+	// componentWillMount(){
+	// 	if(Token.getToken) {
+	// 		console.log("coming")
+	// 	} else {
+	// 		console.log("you dont have permission")
+	// 	}
+	// }
+
 	constructor(props) {
 		super(props)
 
@@ -23,21 +34,29 @@ class Home extends React.Component {
 	}
 
 	removeToken(e) {
-		localStorage.removeItem("token")
+		Token.removeToken()
 	}
 
 	render() {
-		return (
-			<div>
-			<Link to={'/Login'} onClick={this.removeToken}>Logout</Link>
-				<form>
-					<input type= "text" placeholder= "city" ref= "city" />
-					<input type= "text" placeholder= "locality" ref= "locality" />
-					<input type= "submit" value= "Search" onClick= {this.submitHandle} />  
-				</form>
-			{this.props.searchedData.map(searchedData => (<Searchlist searchedData= {searchedData}/>))}		
-			</div>
-		)
+		if(Token.getToken() != null) {
+			return (
+				<div>
+					<Link to={'/Login'} onClick={this.removeToken}>Logout</Link>
+						<form>
+							<input type= "text" placeholder= "city" ref= "city" />
+							<input type= "text" placeholder= "locality" ref= "locality" />
+							<input type= "submit" value= "Search" onClick= {this.submitHandle} />  
+						</form>
+					{this.props.searchedData.map(searchedData => (<Searchlist searchedData= {searchedData} />))}	
+				</div>
+			)
+		} else {
+			return (
+				<div>
+					<h1>401:Unauthorized Access!!</h1>
+				</div>
+			)
+		}
 	}
 }
 

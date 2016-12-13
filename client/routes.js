@@ -44,11 +44,6 @@ export default (
     />
     <Route path="/Signup" component={Signup}/>
     <Route path="/Login" component={Login}/>
-    if(localStorage.getItem("token") != null) {
-      <Route path="/Home" component={Home}/>
-    } else {
-      <h1>404:Page Not Found</h1>
-    }
-
+    <Route path="/Home" component={Home}/>
   </Route>
 );

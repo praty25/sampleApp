@@ -1,6 +1,7 @@
 import callApi from '../../util/apiCaller';
 import toastr from 'toastr';
 import { browserHistory } from 'react-router';
+import Token from '../Tokens';
 
 // Export Constants
 export const ADD_USER = 'ADD_USER '; 
@@ -22,7 +23,7 @@ export function addUser(data) {
 
 export function signInUser(data) {
   if(data.message == 'enjoy your token!') {
-    localStorage.setItem("token",data.token);
+    Token.setToken(data.token);
     browserHistory.push('/Home');
   } else {
     console.log("Error:",data.message)

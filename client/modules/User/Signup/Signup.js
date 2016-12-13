@@ -1,7 +1,7 @@
 import React,{Component, PropTypes} from 'react';
 import { connect } from 'react-redux';
 import ReactDOM from 'react-dom';
-import { FormGroup, FormControl } from 'react-bootstrap';
+import { FormGroup, FormControl } from 'react-bootstrap'; 
 import { signUpRequest } from '../UserActions';
 
 class Signup extends React.Component {
@@ -31,22 +31,22 @@ class Signup extends React.Component {
 				<h1>New to website? Signup Here!! </h1>
 				<form>
 					<FormGroup>
-						<FormControl type="text" placeholder="Name" ref="name"/>
+						<FormControl type="text" placeholder="Name" ref="name" />
 					</FormGroup>
 					<FormGroup>
-						<FormControl type="text" placeholder="MobileNumber" ref="number"/>
+						<FormControl type="text" placeholder="MobileNumber" ref="number" />
 					</FormGroup>
 					<FormGroup>
-						<FormControl type="text" placeholder="Email" ref="email"/>
+						<FormControl type="text" placeholder="Email" ref="email" />
 					</FormGroup>
 					<FormGroup>
-						<FormControl type="password" placeholder="Password" ref="password"/>
+						<FormControl type="password" placeholder="Password" ref="password" />
 					</FormGroup>
 					<FormGroup>
-						<FormControl type="text" placeholder="city" ref="city"/>
+						<FormControl type="text" placeholder="city" ref="city" />
 					</FormGroup>
 					<FormGroup>
-						<FormControl type="text" placeholder="locality" ref="locality"/>
+						<FormControl type="text" placeholder="locality" ref="locality" />
 					</FormGroup>
 					<FormGroup>
 						<FormControl type="submit" className="btn btn-primary" onClick={this.submitForm} value="Sign Up"/>
